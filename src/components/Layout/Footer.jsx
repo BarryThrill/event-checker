@@ -5,7 +5,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-900 dark:bg-dark-surface text-white">
-      <div className="max-w-[77rem] mx-auto px-8 py-12">
+      <div className="max-w-[77rem] mx-auto px-4 sm:px-8 py-12">
         <div className="flex flex-col sm:flex-row items-start justify-between gap-8">
           <div>
             <img src={almiLogo} alt="Almi" width="100" height="36" className="brightness-0 invert mb-3" />

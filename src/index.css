@@ -5,7 +5,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter", "Sofia Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "DM Sans", "Sofia Pro", ui-sans-serif, system-ui, sans-serif;
 
   /* Almi brand colors */
   --color-almi-pink: #d10073;

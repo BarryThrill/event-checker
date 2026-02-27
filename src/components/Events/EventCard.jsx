@@ -8,7 +8,7 @@ export default function EventCard({ event }) {
     <article className={`group bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg hover:shadow-lg transition-all duration-300 ${event.isPast ? 'opacity-60' : ''}`}>
       <div className={`h-1.5 rounded-t-lg ${event.isPast ? 'bg-gray-300 dark:bg-gray-700' : 'bg-gradient-to-r from-almi-pink to-almi-pink-light'}`} />
 
-      <div className="p-6 sm:p-8">
+      <div className="p-5 sm:p-8">
         <div className="flex items-center justify-between mb-4">
           <Badge variant={event.isPast ? 'secondary' : 'default'}>
             {event.isPast ? 'Past Event' : 'Upcoming'}

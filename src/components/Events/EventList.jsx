@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 export default function EventList({ title, events, id, emptyMessage }) {
   return (
     <section id={id} className="py-12 sm:py-18">
-      <div className="max-w-[77rem] mx-auto px-8">
+      <div className="max-w-[77rem] mx-auto px-4 sm:px-8">
         <div className="flex items-center gap-4 mb-10">
           <h2 className="text-2xl sm:text-[36px] font-bold text-gray-800 dark:text-gray-200 leading-tight">{title}</h2>
           <Badge variant="secondary" className="text-sm px-3 py-1">

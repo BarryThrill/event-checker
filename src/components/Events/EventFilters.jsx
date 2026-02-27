@@ -10,7 +10,7 @@ export default function EventFilters({
 }) {
   return (
     <section className="bg-white dark:bg-dark-surface border-b border-gray-100 dark:border-dark-border sticky top-16 z-40">
-      <div className="max-w-[77rem] mx-auto px-8 py-5">
+      <div className="max-w-[77rem] mx-auto px-4 sm:px-8 py-5">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
           <span className="text-sm font-medium text-gray-800 dark:text-gray-200 shrink-0">Filter by:</span>
 
