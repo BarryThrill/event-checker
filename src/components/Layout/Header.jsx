@@ -1,4 +1,5 @@
 import almiLogo from '/almi-logo.svg';
+import { Button } from '@/components/ui/button';
 
 export default function Header({ isDark, onToggleDark }) {
   return (
@@ -15,23 +16,23 @@ export default function Header({ isDark, onToggleDark }) {
             />
           </a>
 
-          <div className="flex items-center gap-6">
-            <nav className="hidden sm:flex items-center gap-8">
-              <a href="#upcoming" className="text-gray-900 dark:text-gray-200 hover:text-almi-pink transition-colors text-sm font-medium">
-                Upcoming
-              </a>
-              <a href="#past" className="text-gray-900 dark:text-gray-200 hover:text-almi-pink transition-colors text-sm font-medium">
-                Past Events
-              </a>
-              <a href="#calendar" className="text-gray-900 dark:text-gray-200 hover:text-almi-pink transition-colors text-sm font-medium">
-                Calendar
-              </a>
+          <div className="flex items-center gap-2">
+            <nav className="hidden sm:flex items-center gap-1">
+              <Button variant="ghost" size="sm" asChild>
+                <a href="#upcoming">Upcoming</a>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <a href="#past">Past Events</a>
+              </Button>
+              <Button variant="ghost" size="sm" asChild>
+                <a href="#calendar">Calendar</a>
+              </Button>
             </nav>
 
-            {/* Dark mode toggle */}
-            <button
+            <Button
+              variant="ghost"
+              size="icon-sm"
               onClick={onToggleDark}
-              className="p-2 rounded-sm text-gray-500 dark:text-gray-400 hover:text-almi-pink dark:hover:text-almi-pink-light transition-colors cursor-pointer"
               aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? (
@@ -43,14 +44,13 @@ export default function Header({ isDark, onToggleDark }) {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
                 </svg>
               )}
-            </button>
+            </Button>
 
-            {/* Mobile menu button */}
-            <button className="sm:hidden p-2 text-gray-600 dark:text-gray-400 cursor-pointer" aria-label="Menu">
+            <Button variant="ghost" size="icon-sm" className="sm:hidden" aria-label="Menu">
               <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
               </svg>
-            </button>
+            </Button>
           </div>
         </div>
       </div>

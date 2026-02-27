@@ -1,3 +1,5 @@
+import { Button } from '@/components/ui/button';
+
 export default function EventFilters({
   months,
   locations,
@@ -13,28 +15,22 @@ export default function EventFilters({
           <span className="text-sm font-medium text-gray-800 dark:text-gray-200 shrink-0">Filter by:</span>
 
           <div className="flex flex-wrap gap-2">
-            <button
+            <Button
+              variant={monthFilter === 'all' ? 'default' : 'outline'}
+              size="sm"
               onClick={() => setMonthFilter('all')}
-              className={`px-4 py-2 rounded-sm text-sm font-medium transition-all duration-200 cursor-pointer border ${
-                monthFilter === 'all'
-                  ? 'bg-almi-pink text-white border-almi-pink'
-                  : 'bg-white dark:bg-dark-surface-2 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-dark-border hover:border-almi-pink hover:text-almi-pink'
-              }`}
             >
               All Months
-            </button>
+            </Button>
             {months.map(month => (
-              <button
+              <Button
                 key={month}
+                variant={monthFilter === month ? 'default' : 'outline'}
+                size="sm"
                 onClick={() => setMonthFilter(month)}
-                className={`px-4 py-2 rounded-sm text-sm font-medium transition-all duration-200 cursor-pointer border ${
-                  monthFilter === month
-                    ? 'bg-almi-pink text-white border-almi-pink'
-                    : 'bg-white dark:bg-dark-surface-2 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-dark-border hover:border-almi-pink hover:text-almi-pink'
-                }`}
               >
                 {month}
-              </button>
+              </Button>
             ))}
           </div>
 
@@ -42,7 +38,7 @@ export default function EventFilters({
             <select
               value={locationFilter}
               onChange={e => setLocationFilter(e.target.value)}
-              className="px-4 py-2 rounded-sm text-sm font-medium bg-white dark:bg-dark-surface-2 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-dark-border hover:border-almi-pink transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-almi-pink/30"
+              className="h-8 px-3 rounded-md text-sm font-medium bg-white dark:bg-dark-surface-2 text-gray-600 dark:text-gray-300 border border-input hover:border-almi-pink transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-ring/50"
             >
               <option value="all">All Locations</option>
               {locations.map(loc => (

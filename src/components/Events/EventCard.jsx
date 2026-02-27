@@ -1,17 +1,18 @@
-import { formatDateRange } from '../../utils/dateUtils';
+import { formatDateRange } from '@/utils/dateUtils';
+import { Badge } from '@/components/ui/badge';
 
 export default function EventCard({ event }) {
   const dateStr = formatDateRange(event.startDate, event.endDate);
 
   return (
-    <article className={`group bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-sm hover:shadow-md transition-all duration-300 ${event.isPast ? 'opacity-60' : ''}`}>
-      <div className={`h-1.5 ${event.isPast ? 'bg-gray-300 dark:bg-gray-700' : 'bg-almi-pink'}`} />
+    <article className={`group bg-white dark:bg-dark-surface border border-gray-200 dark:border-dark-border rounded-lg hover:shadow-lg transition-all duration-300 ${event.isPast ? 'opacity-60' : ''}`}>
+      <div className={`h-1.5 rounded-t-lg ${event.isPast ? 'bg-gray-300 dark:bg-gray-700' : 'bg-gradient-to-r from-almi-pink to-almi-pink-light'}`} />
 
       <div className="p-6 sm:p-8">
         <div className="flex items-center justify-between mb-4">
-          <span className="text-almi-pink text-xs font-medium tracking-wider uppercase">
+          <Badge variant={event.isPast ? 'secondary' : 'default'}>
             {event.isPast ? 'Past Event' : 'Upcoming'}
-          </span>
+          </Badge>
           {event.location && (
             <span className="text-gray-400 dark:text-gray-500 text-xs font-medium">{event.location}</span>
           )}
