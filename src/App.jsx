@@ -3,12 +3,15 @@ import Footer from './components/Layout/Footer';
 import HeroSection from './components/Events/HeroSection';
 import EventFilters from './components/Events/EventFilters';
 import EventList from './components/Events/EventList';
+import CalendarView from './components/Events/CalendarView';
 import { useEvents } from './hooks/useEvents';
+import { useDarkMode } from './hooks/useDarkMode';
 
 function App() {
   const {
     upcomingEvents,
     pastEvents,
+    filteredEvents,
     months,
     locations,
     monthFilter,
@@ -18,9 +21,11 @@ function App() {
     stats,
   } = useEvents();
 
+  const { isDark, toggle: toggleDark } = useDarkMode();
+
   return (
-    <div className="min-h-screen bg-navy-50 flex flex-col">
-      <Header />
+    <div className="min-h-screen bg-white dark:bg-dark-bg flex flex-col">
+      <Header isDark={isDark} onToggleDark={toggleDark} />
       <HeroSection stats={stats} />
       <EventFilters
         months={months}
@@ -30,16 +35,13 @@ function App() {
         locationFilter={locationFilter}
         setLocationFilter={setLocationFilter}
       />
-      <main className="flex-1">
+      <main className="flex-1 bg-gray-50 dark:bg-dark-bg">
         <EventList
           id="upcoming"
           title="Upcoming Events"
           events={upcomingEvents}
           emptyMessage="No upcoming events match your filters."
         />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <hr className="border-navy-200" />
-        </div>
         <EventList
           id="past"
           title="Past Events"
@@ -47,6 +49,7 @@ function App() {
           emptyMessage="No past events match your filters."
         />
       </main>
+      <CalendarView events={filteredEvents} />
       <Footer />
     </div>
   );

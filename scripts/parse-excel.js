@@ -8,6 +8,28 @@ const ROOT = join(__dirname, '..');
 const EXCEL_PATH = join(ROOT, 'Eventkalender_2026.xlsx');
 const OUTPUT_PATH = join(ROOT, 'src', 'data', 'events.json');
 
+// Full Swedish month names — auto-expands abbreviations
+const MONTH_FULL_NAMES = {
+  'jan': 'Januari', 'januari': 'Januari',
+  'feb': 'Februari', 'februari': 'Februari',
+  'mar': 'Mars', 'mars': 'Mars',
+  'apr': 'April', 'april': 'April',
+  'maj': 'Maj', 'may': 'Maj',
+  'jun': 'Juni', 'juni': 'Juni',
+  'jul': 'Juli', 'juli': 'Juli',
+  'aug': 'Augusti', 'augusti': 'Augusti',
+  'sep': 'September', 'september': 'September',
+  'okt': 'Oktober', 'oktober': 'Oktober', 'oct': 'Oktober',
+  'nov': 'November', 'november': 'November',
+  'dec': 'December', 'december': 'December',
+};
+
+function normalizeMonth(raw) {
+  if (!raw) return null;
+  const key = raw.trim().toLowerCase();
+  return MONTH_FULL_NAMES[key] || raw.trim();
+}
+
 function parseYYMMDD(value) {
   if (value == null) return null;
   const str = String(value).padStart(6, '0');
@@ -31,7 +53,7 @@ function parseExcel() {
     id: index + 1,
     startDate: parseYYMMDD(row['Datum Start']),
     endDate: parseYYMMDD(row['Datum Slut']),
-    month: row['Månad'] || null,
+    month: normalizeMonth(row['Månad']),
     name: row['Event'] || 'Unnamed Event',
     link: row['Länk/hemsida'] || null,
     description: row['Beskrivning'] || null,

@@ -7,19 +7,18 @@ export default function EventFilters({
   setLocationFilter,
 }) {
   return (
-    <section className="bg-white border-b border-navy-100 sticky top-16 z-40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <section className="bg-white dark:bg-dark-surface border-b border-gray-100 dark:border-dark-border sticky top-16 z-40">
+      <div className="max-w-[77rem] mx-auto px-8 py-5">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4">
-          <span className="text-sm font-medium text-navy-500 shrink-0">Filter by:</span>
+          <span className="text-sm font-medium text-gray-800 dark:text-gray-200 shrink-0">Filter by:</span>
 
-          {/* Month pills */}
           <div className="flex flex-wrap gap-2">
             <button
               onClick={() => setMonthFilter('all')}
-              className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
+              className={`px-4 py-2 rounded-sm text-sm font-medium transition-all duration-200 cursor-pointer border ${
                 monthFilter === 'all'
-                  ? 'bg-navy-900 text-white shadow-sm'
-                  : 'bg-navy-50 text-navy-600 hover:bg-navy-100'
+                  ? 'bg-almi-pink text-white border-almi-pink'
+                  : 'bg-white dark:bg-dark-surface-2 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-dark-border hover:border-almi-pink hover:text-almi-pink'
               }`}
             >
               All Months
@@ -28,10 +27,10 @@ export default function EventFilters({
               <button
                 key={month}
                 onClick={() => setMonthFilter(month)}
-                className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all duration-200 cursor-pointer ${
+                className={`px-4 py-2 rounded-sm text-sm font-medium transition-all duration-200 cursor-pointer border ${
                   monthFilter === month
-                    ? 'bg-navy-900 text-white shadow-sm'
-                    : 'bg-navy-50 text-navy-600 hover:bg-navy-100'
+                    ? 'bg-almi-pink text-white border-almi-pink'
+                    : 'bg-white dark:bg-dark-surface-2 text-gray-600 dark:text-gray-300 border-gray-200 dark:border-dark-border hover:border-almi-pink hover:text-almi-pink'
                 }`}
               >
                 {month}
@@ -39,12 +38,11 @@ export default function EventFilters({
             ))}
           </div>
 
-          {/* Location dropdown */}
           <div className="sm:ml-auto">
             <select
               value={locationFilter}
               onChange={e => setLocationFilter(e.target.value)}
-              className="px-3.5 py-1.5 rounded-lg text-sm font-medium bg-navy-50 text-navy-600 border border-navy-200 hover:bg-navy-100 transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-accent/50"
+              className="px-4 py-2 rounded-sm text-sm font-medium bg-white dark:bg-dark-surface-2 text-gray-600 dark:text-gray-300 border border-gray-200 dark:border-dark-border hover:border-almi-pink transition-colors cursor-pointer focus:outline-none focus:ring-2 focus:ring-almi-pink/30"
             >
               <option value="all">All Locations</option>
               {locations.map(loc => (

@@ -34,6 +34,14 @@ export function formatDateRange(startDate, endDate) {
   return `${formatDate(startDate)} – ${formatDate(endDate)}`;
 }
 
+/** Derive the year from an event's start date, or fall back to current year */
+function getEventYear(event) {
+  if (event.startDate) {
+    return parseInt(event.startDate.slice(0, 4), 10);
+  }
+  return new Date().getFullYear();
+}
+
 export function isPastEvent(event) {
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -43,11 +51,12 @@ export function isPastEvent(event) {
   if (event.startDate) {
     return new Date(event.startDate + 'T00:00:00') < today;
   }
-  // No dates — use month to estimate (last day of that month in 2026)
+  // No dates — use month to estimate (last day of that month)
   if (event.month) {
     const monthNum = MONTH_ORDER[event.month.toLowerCase()];
     if (monthNum) {
-      const eventApproxDate = new Date(2026, monthNum, 0); // last day of month
+      const year = getEventYear(event);
+      const eventApproxDate = new Date(year, monthNum, 0); // last day of month
       return eventApproxDate < today;
     }
   }
@@ -58,9 +67,13 @@ export function getSortDate(event) {
   if (event.startDate) return event.startDate;
   if (event.month) {
     const monthNum = MONTH_ORDER[event.month.toLowerCase()];
-    if (monthNum) return `2026-${String(monthNum).padStart(2, '0')}-01`;
+    if (monthNum) {
+      const year = getEventYear(event);
+      return `${year}-${String(monthNum).padStart(2, '0')}-01`;
+    }
   }
-  return '2026-12-31';
+  // Fallback: end of current year
+  return `${new Date().getFullYear()}-12-31`;
 }
 
 export function getMonthOrder(monthName) {

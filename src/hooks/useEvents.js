@@ -57,6 +57,7 @@ export function useEvents() {
   return {
     upcomingEvents,
     pastEvents,
+    filteredEvents,
     months,
     locations,
     monthFilter,

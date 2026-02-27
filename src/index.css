@@ -1,21 +1,36 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-  --color-navy-950: #020617;
-  --color-navy-900: #0f172a;
-  --color-navy-800: #1e293b;
-  --color-navy-700: #334155;
-  --color-navy-600: #475569;
-  --color-navy-500: #64748b;
-  --color-navy-400: #94a3b8;
-  --color-navy-300: #cbd5e1;
-  --color-navy-200: #e2e8f0;
-  --color-navy-100: #f1f5f9;
-  --color-navy-50: #f8fafc;
-  --color-accent: #3b82f6;
-  --color-accent-light: #60a5fa;
-  --color-accent-dark: #2563eb;
+  --font-sans: "Inter", "Sofia Pro", ui-sans-serif, system-ui, sans-serif;
+
+  /* Almi brand colors */
+  --color-almi-pink: #d10073;
+  --color-almi-pink-light: #fa1995;
+  --color-almi-pink-hover: #b80066;
+  --color-almi-purple: #870aa0;
+  --color-almi-purple-light: #f6edf8;
+  --color-almi-rose-bg: #fff0f9;
+
+  /* Neutral tones from Almi */
+  --color-gray-900: #141414;
+  --color-gray-800: #212121;
+  --color-gray-700: #333333;
+  --color-gray-600: #454545;
+  --color-gray-500: #666666;
+  --color-gray-400: #999999;
+  --color-gray-300: #cccccc;
+  --color-gray-200: #e5e5e5;
+  --color-gray-100: #f5f5f5;
+  --color-gray-50: #fafafa;
+
+  /* Dark mode surface colors */
+  --color-dark-bg: #0f0f0f;
+  --color-dark-surface: #1a1a1a;
+  --color-dark-surface-2: #242424;
+  --color-dark-border: #2e2e2e;
+  --color-dark-rose-bg: #2a0f1e;
 }
 
 html {
@@ -25,6 +40,14 @@ html {
 body {
   margin: 0;
   font-family: var(--font-sans);
+  font-weight: 300;
+  color: var(--color-gray-600);
+  line-height: 1.45;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  color: var(--color-gray-400);
+  background-color: var(--color-dark-bg);
 }
