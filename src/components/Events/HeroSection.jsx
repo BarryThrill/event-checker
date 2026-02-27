@@ -26,13 +26,11 @@ export default function HeroSection({ stats }) {
           Stay up to date with our upcoming events, conferences, and summits across Sweden.
         </p>
 
-        <div className="inline-grid grid-cols-3 items-start bg-white dark:bg-dark-surface rounded-xl px-6 sm:px-10 py-6 sm:py-8 shadow-sm border border-gray-100 dark:border-dark-border gap-4 sm:gap-14">
+        <div className="inline-flex items-center bg-white dark:bg-dark-surface rounded-2xl px-8 sm:px-14 py-7 sm:py-9 shadow-sm border border-gray-100 dark:border-dark-border">
           <CountStat value={stats.total} label="Total Events" />
-          <div className="relative flex justify-center">
-            <div className="absolute left-0 top-0 bottom-0 w-px bg-gray-200 dark:bg-dark-border" />
-            <CountStat value={stats.upcoming} label="Upcoming" pink />
-            <div className="absolute right-0 top-0 bottom-0 w-px bg-gray-200 dark:bg-dark-border" />
-          </div>
+          <div className="w-px self-stretch bg-gray-200 dark:bg-dark-border mx-6 sm:mx-12" />
+          <CountStat value={stats.upcoming} label="Upcoming" pink />
+          <div className="w-px self-stretch bg-gray-200 dark:bg-dark-border mx-6 sm:mx-12" />
           <CountStat value={stats.locations} label="Locations" />
         </div>
       </div>
