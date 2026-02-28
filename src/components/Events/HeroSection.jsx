@@ -1,12 +1,15 @@
 import { useCountUp } from '@/hooks/useCountUp';
 
 function CountStat({ value, label, pink }) {
-  const { count, ref } = useCountUp(value);
+  const { ref, displayRef } = useCountUp(value);
 
   return (
     <div className="text-center flex flex-col items-center" ref={ref}>
-      <span className={`block text-3xl sm:text-5xl font-bold leading-none count-animate ${pink ? 'text-almi-pink' : 'text-gray-900 dark:text-white'}`}>
-        {count}
+      <span
+        ref={displayRef}
+        className={`block text-3xl sm:text-5xl font-bold leading-none count-animate ${pink ? 'text-almi-pink' : 'text-gray-900 dark:text-white'}`}
+      >
+        0
       </span>
       <span className="text-gray-500 dark:text-gray-400 text-xs sm:text-sm mt-2 block font-light">{label}</span>
     </div>

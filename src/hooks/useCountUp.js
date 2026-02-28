@@ -1,41 +1,36 @@
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef } from 'react';
+import { useInView, useMotionValue, useSpring, animate } from 'motion/react';
 
-export function useCountUp(target, duration = 1200) {
-  const [count, setCount] = useState(0);
-  const hasAnimated = useRef(false);
-  const elementRef = useRef(null);
+export function useCountUp(target) {
+  const ref = useRef(null);
+  const motionValue = useMotionValue(0);
+  const springValue = useSpring(motionValue, {
+    stiffness: 50,
+    damping: 30,
+    mass: 1,
+  });
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const displayRef = useRef(null);
 
+  // Update the DOM text directly from spring to avoid React re-renders
   useEffect(() => {
-    const element = elementRef.current;
-    if (!element) return;
+    const unsubscribe = springValue.on('change', (latest) => {
+      if (displayRef.current) {
+        displayRef.current.textContent = Math.round(latest);
+      }
+    });
+    return unsubscribe;
+  }, [springValue]);
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting && !hasAnimated.current) {
-          hasAnimated.current = true;
-          const start = performance.now();
+  // Trigger animation when in view
+  useEffect(() => {
+    if (isInView) {
+      animate(motionValue, target, {
+        duration: 2,
+        ease: [0.16, 1, 0.3, 1],
+      });
+    }
+  }, [isInView, motionValue, target]);
 
-          const animate = (now) => {
-            const elapsed = now - start;
-            const progress = Math.min(elapsed / duration, 1);
-            // Ease out cubic
-            const eased = 1 - Math.pow(1 - progress, 3);
-            setCount(Math.round(eased * target));
-
-            if (progress < 1) {
-              requestAnimationFrame(animate);
-            }
-          };
-
-          requestAnimationFrame(animate);
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    observer.observe(element);
-    return () => observer.disconnect();
-  }, [target, duration]);
-
-  return { count, ref: elementRef };
+  return { ref, displayRef };
 }
